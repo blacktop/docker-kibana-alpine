@@ -26,7 +26,8 @@ Compare Image Sizes:
  - official kibana = 320.8 MB
  - blacktop/kibana = 288.4 MB
 
-**Alpine version is 32.4 MB smaller ! ..ok that isn't that much smaller, but I have a version that comes with X-Pack built in! :wink:**
+**Alpine version is 32.4 MB smaller !**  
+> Ok that isn't that much smaller, but I have a version that comes with [X-Pack](https://www.elastic.co/guide/en/x-pack/current/xpack-introduction.html) built in! :wink:
 
 ### Dependencies
 
