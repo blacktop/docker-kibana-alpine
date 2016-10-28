@@ -1,4 +1,4 @@
-![kibana-logo](https://raw.githubusercontent.com/blacktop/docker-kibana-alpine/master/kibana-logo.svg)
+![kibana-logo](https://cdn.rawgit.com/blacktop/docker-kibana-alpine/master/kibana-logo.svg)
 
 docker-kibana-alpine
 ===========================
