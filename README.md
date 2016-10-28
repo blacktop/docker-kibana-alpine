@@ -1,4 +1,4 @@
-![kibana-logo](https://cdn.rawgit.com/blacktop/docker-kibana-alpine/master/kibana-logo.svg){:height="36px" width="36px"}
+<img src="https://cdn.rawgit.com/blacktop/docker-kibana-alpine/master/kibana-logo.svg" alt="kibana-logo" width="75" height="75">
 
 docker-kibana-alpine
 ===========================
