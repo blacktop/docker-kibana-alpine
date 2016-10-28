@@ -3,7 +3,7 @@
 docker-kibana-alpine
 ===========================
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-kibana-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kibana-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Image](https://img.shields.io/badge/docker image--blue.svg)](https://hub.docker.com/r/blacktop/kibana/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-kibana-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kibana-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Image](https://img.shields.io/badge/docker image-288.4 MB-blue.svg)](https://hub.docker.com/r/blacktop/kibana/)
 
 Alpine Linux based Elasticsearch Docker Image
 
@@ -14,10 +14,6 @@ Alpine Linux based Elasticsearch Docker Image
   - [Image Tags](#image-tags)
   - [Getting Started](#getting-started)
   - [Documentation](#documentation)
-      - [To create an kibana cluster](docs/create.md)
-      - [To increase the ES_HEAP_SIZE to 2GB](docs/options.md)        
-      - [To monitor the clusters metrics using dockerbeat](docs/dockerbeat.md)
-      - [To run in production](docs/production.md)
   - [Issues](#issues)
   - [Credits](#credits)
   - [CHANGELOG](#changelog)
@@ -27,10 +23,10 @@ Alpine Linux based Elasticsearch Docker Image
 ### Why?
 
 Compare Image Sizes:  
- - official kibana = 354.8 MB  
- - blacktop/kibana = 141 MB
+ - official kibana = 320.8 MB
+ - blacktop/kibana = 288.4 MB
 
-**Alpine version is 213 MB smaller !**
+**Alpine version is 32.4 MB smaller ! ..ok that isn't that much smaller, but I have a version that comes with X-Pack built in! :wink:**
 
 ### Dependencies
 
@@ -40,13 +36,13 @@ Compare Image Sizes:
 
 ```bash
 REPOSITORY               TAG                 SIZE
-blacktop/kibana   latest              141.5 MB
-blacktop/kibana   5.0                 151.1 MB
-blacktop/kibana   x-pack              147.5 MB
-blacktop/kibana   2.4                 141.5 MB
+blacktop/kibana          latest              288.4
+blacktop/kibana          5.0                 288.4
+blacktop/kibana          x-pack              147.5 MB
+blacktop/kibana          4.6                 141.5 MB
 ```
 
-> **NOTE:** tag **kopf** is the same as tag **latest**, but includes the *kopf* plugin.  
+> **NOTE:** tag **x-pack** is the same as tag **latest**, but includes the *x-pack* plugin.  
 
 ### Getting Started
 
@@ -55,11 +51,6 @@ $ docker run -d --name kibana -p 80:5601 blacktop/kibana
 ```
 
 ### Documentation
-
- * [To create an kibana cluster](docs/create.md)
- * [To increase the ES_HEAP_SIZE to 2GB](docs/options.md)
- * [To monitor the clusters metrics using dockerbeat](docs/dockerbeat.md)
- * [To run in production](docs/production.md)
 
 ### Issues
 

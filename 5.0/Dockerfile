@@ -46,11 +46,11 @@ COPY docker-healthcheck /usr/local/bin/
 WORKDIR /usr/share/kibana
 ENV PATH /usr/share/kibana/bin:$PATH
 
-# Install X-Pack plugin
-RUN kibana-plugin install x-pack
-
 EXPOSE 5601
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["kibana"]
 
 # HEALTHCHECK CMD ["docker-healthcheck"]
+
+
+	# && sed -ri "s!^NODE="${DIR}/node/bin/node"\2 'NODE="${DIR}/node/bin/node"'!" /usr/share/kibana/config/kibana.yml \
