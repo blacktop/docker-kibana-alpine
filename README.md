@@ -40,7 +40,7 @@ REPOSITORY          TAG                 SIZE
 blacktop/kibana     latest              288.4 MB
 blacktop/kibana     5.0                 288.4 MB
 blacktop/kibana     x-pack              348.2 MB
-blacktop/kibana     4.6                 141.5 MB
+blacktop/kibana     4.6                 231 MB
 ```
 
 > **NOTE:** tag **x-pack** is the same as tag **latest**, but includes the *x-pack* plugin.  
@@ -48,7 +48,7 @@ blacktop/kibana     4.6                 141.5 MB
 ### Getting Started
 
 ```bash
-$ docker run -d --name kibana -p 80:5601 blacktop/kibana
+$ docker run -d --name kibana -p 5601:5601 blacktop/kibana
 ```
 
 ### Documentation
