@@ -58,5 +58,3 @@ RUN kibana-plugin install x-pack
 EXPOSE 5601
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["kibana"]
-
-# HEALTHCHECK CMD ["docker-healthcheck"]

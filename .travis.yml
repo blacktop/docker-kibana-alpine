@@ -12,4 +12,4 @@ before_install:
 
 script:
   - docker-compose build
-  - docker-compose run kibana
+  - docker-compose up -d 

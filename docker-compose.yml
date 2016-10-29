@@ -9,8 +9,6 @@ services:
     image: blacktop/elasticsearch
     ports:
       - "9200"
-    networks:
-      - elastic
   ###############
   # KIBANA NODE #
   ###############
@@ -20,5 +18,3 @@ services:
       - "5601"
     links:
      - es:elasticsearch
-    networks:
-      - elastic
