@@ -16,8 +16,7 @@ dependencies:
 
 test:
   override:
-    - docker run -d --name es circleci/elasticsearch; sleep 10
-    - docker run -d --link es:elasticsearch -p 5601:5601 blacktop_kibana; sleep 10
+    - docker run -d -p 5601:5601 blacktop_kibana; sleep 10
     - curl --retry 10 --retry-delay 5 -v http://localhost:5601
 
 deployment:
