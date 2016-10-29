@@ -37,11 +37,11 @@ Compare Image Sizes:
 ### Image Tags
 
 ```bash
-REPOSITORY               TAG                 SIZE
-blacktop/kibana          latest              288.4
-blacktop/kibana          5.0                 288.4
-blacktop/kibana          x-pack              147.5 MB
-blacktop/kibana          4.6                 141.5 MB
+REPOSITORY          TAG                 SIZE
+blacktop/kibana     latest              288.4 MB
+blacktop/kibana     5.0                 288.4 MB
+blacktop/kibana     x-pack              348.2 MB
+blacktop/kibana     4.6                 141.5 MB
 ```
 
 > **NOTE:** tag **x-pack** is the same as tag **latest**, but includes the *x-pack* plugin.  
