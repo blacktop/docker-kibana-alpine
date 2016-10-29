@@ -24,7 +24,7 @@ Alpine Linux based Kibana Docker Image
 
 Compare Image Sizes:  
  - official kibana = 320.8 MB
- - blacktop/kibana = 288.4 MB
+ - blacktop/kibana = 245.8 MB
 
 **Alpine version is 75 MB smaller !**  
 
