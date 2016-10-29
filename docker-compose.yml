@@ -1,9 +1,9 @@
 version: "2"
 
 services:
-  ####################################
-  # ELASTICSEARCH CLIENT/INGEST NODE #
-  ####################################
+  ######################
+  # ELASTICSEARCH NODE #
+  ######################
   es:
     restart: unless-stopped
     image: blacktop/elasticsearch
