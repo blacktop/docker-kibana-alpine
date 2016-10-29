@@ -3,7 +3,6 @@
 docker-kibana-alpine
 ====================
 
-[![Build Status](https://travis-ci.org/blacktop/docker-kibana-alpine.svg?branch=master)](https://travis-ci.org/blacktop/docker-kibana-alpine)
 [![CircleCI](https://circleci.com/gh/blacktop/docker-kibana-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kibana-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Image](https://img.shields.io/badge/docker image--blue.svg)](https://hub.docker.com/r/blacktop/kibana/)
 
 Alpine Linux based Kibana Docker Image
