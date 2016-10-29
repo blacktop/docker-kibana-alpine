@@ -21,12 +21,12 @@ RUN apk-install -t build-deps wget ca-certificates gpgme \
 	&& gosu nobody true \
   && apk del --purge build-deps
 
-ENV KIBANA_VERSION 4.6.1
+ENV KIBANA_VERSION 4.6.2
 
 RUN apk-install bash nodejs
 RUN apk-install -t .build-deps wget ca-certificates \
   && cd /tmp \
-	&& wget -O kibana-$KIBANA_VERSION.tar.gz https://artifacts.elastic.co/downloads/kibana/kibana-$KIBANA_VERSION-linux-x86_64.tar.gz \
+	&& wget -O kibana-$KIBANA_VERSION.tar.gz https://download.elastic.co/kibana/kibana/kibana-$KIBANA_VERSION-linux-x86_64.tar.gz \
   && tar -xzf kibana-$KIBANA_VERSION.tar.gz \
   && mv kibana-$KIBANA_VERSION-linux-x86_64 /usr/share/kibana \
   && adduser -DH -s /sbin/nologin kibana \
@@ -39,7 +39,6 @@ RUN apk-install -t .build-deps wget ca-certificates \
   # usr alpine nodejs and not bundled version
   && bundled='NODE="${DIR}/node/bin/node"' \
   && apline_node='NODE="/usr/bin/node"' \
-  && sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana-plugin \
   && sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana \
   && rm -rf /usr/share/kibana/node \
   && chown -R kibana:kibana /usr/share/kibana \
@@ -47,7 +46,6 @@ RUN apk-install -t .build-deps wget ca-certificates \
   && apk del --purge .build-deps
 
 COPY docker-entrypoint.sh /
-COPY docker-healthcheck /usr/local/bin/
 
 WORKDIR /usr/share/kibana
 ENV PATH /usr/share/kibana/bin:$PATH

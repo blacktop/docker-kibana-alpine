@@ -47,7 +47,6 @@ RUN apk-install -t .build-deps wget ca-certificates \
   && apk del --purge .build-deps
 
 COPY docker-entrypoint.sh /
-COPY docker-healthcheck /usr/local/bin/
 
 WORKDIR /usr/share/kibana
 ENV PATH /usr/share/kibana/bin:$PATH
