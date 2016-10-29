@@ -36,6 +36,12 @@ RUN apk-install -t .build-deps wget ca-certificates \
   # ensure the default configuration is useful when using --link
 	&& sed -ri "s!^(\#\s*)?(elasticsearch\.url:).*!\2 'http://elasticsearch:9200'!" /usr/share/kibana/config/kibana.yml \
 	&& grep -q "^elasticsearch\.url: 'http://elasticsearch:9200'\$" /usr/share/kibana/config/kibana.yml \
+  # usr alpine nodejs and not bundled version
+  && bundled='NODE="${DIR}/node/bin/node"' \
+  && apline_node='NODE="/usr/bin/node"' \
+  && sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana-plugin \
+  && sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana \
+  && rm -rf /usr/share/kibana/node \
   && chown -R kibana:kibana /usr/share/kibana \
   && rm -rf /tmp/* \
   && apk del --purge .build-deps
