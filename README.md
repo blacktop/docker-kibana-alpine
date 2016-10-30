@@ -47,7 +47,8 @@ blacktop/kibana     4.6                 231 MB
 ### Getting Started
 
 ```bash
-$ docker run -d --name kibana -p 5601:5601 blacktop/kibana
+$ docker run -d --name elastic -p 9200:9200 blacktop/elasticsearch
+$ docker run -d --name kibana --link elastic:elasticsearch -p 5601:5601 blacktop/kibana
 ```
 
 ### Documentation
