@@ -21,7 +21,7 @@ RUN apk-install -t build-deps wget ca-certificates gpgme \
   && gosu nobody true \
   && apk del --purge build-deps
 
-ENV KIBANA_VERSION 5.0.0
+ENV KIBANA_VERSION 5.0.1
 
 RUN apk-install bash nodejs
 RUN apk-install -t .build-deps wget ca-certificates \
