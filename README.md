@@ -53,6 +53,18 @@ $ docker run -d --name kibana --link elastic:elasticsearch -p 5601:5601 blacktop
 
 ### Documentation
 
+#### To use your own elasticsearch address via `ELASTICSEARCH_URL`
+
+```bash
+$ docker run -d --name kibana -e ELASTICSEARCH_URL=http://some-elasticsearch:9200 -p 5601:5601 blacktop/kibana
+```
+
+For elasticsearch running on a OSX host it would be
+
+```bash
+$ docker run -d --name kibana -e ELASTICSEARCH_URL=http://$(ipconfig getifaddr en0):9200 -p 5601:5601 blacktop/kibana
+```
+
 ### Issues
 
 Find a bug? Want more features? Find something missing in the documentation? Let me know! Please don't hesitate to [file an issue](https://github.com/blacktop/docker-kibana-alpine/issues/new)

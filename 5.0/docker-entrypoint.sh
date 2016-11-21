@@ -9,7 +9,7 @@ fi
 # Run as user "kibana" if the command is "kibana"
 if [ "$1" = 'kibana' ]; then
 	if [ "$ELASTICSEARCH_URL" ]; then
-		sed -ri "s!^(\#\s*)?(elasticsearch\.url:).*!\2 '$ELASTICSEARCH_URL'!" /etc/kibana/kibana.yml
+		sed -ri "s!^(\#\s*)?(elasticsearch\.url:).*!\2 '$ELASTICSEARCH_URL'!" /usr/share/kibana/config/kibana.yml
 	fi
 
 	set -- gosu kibana tini -- "$@"
