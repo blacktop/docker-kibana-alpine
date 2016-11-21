@@ -62,7 +62,21 @@ $ docker run -d --name kibana -e ELASTICSEARCH_URL=http://some-elasticsearch:920
 For elasticsearch running on a OSX host it would be
 
 ```bash
-$ docker run -d --name kibana -e ELASTICSEARCH_URL="http://$(ipconfig getifaddr en0):9200" -p 5601:5601 blacktop/kibana
+$ docker run -d --name kibana \
+  -p 5601:5601 \
+  --net host \
+  -e ELASTICSEARCH_URL="http://$(ipconfig getifaddr en0):9200" \
+  blacktop/kibana
+```
+
+=OR=
+
+```bash
+$ docker run -d --name kibana \
+  -p 5601:5601 \
+  --net host \
+  -e ELASTICSEARCH_URL=http://localhost:9200 \
+  blacktop/kibana
 ```
 
 ### Issues
