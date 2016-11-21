@@ -10,11 +10,10 @@ tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" blacktop/$(NAME)
 
 build:
-	rm -rf build && mkdir build
-	docker build -t $(NAME):$(VERSION) .
+	docker build -t blacktop/$(NAME):$(VERSION) .
 
 size:
-	sed -i.bu 's/docker image-.*-blue/docker image-$(shell docker images --format "{{.Size}}" $(NAME):$(VERSION))-blue/g' ../README.md
+	sed -i.bu 's/docker image-.*-blue/docker image-$(shell docker images --format "{{.Size}}" blacktop/$(NAME):$(VERSION))-blue/g' ../README.md
 
 release:
 	rm -rf release && mkdir release
