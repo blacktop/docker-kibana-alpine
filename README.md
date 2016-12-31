@@ -26,7 +26,7 @@ Compare Image Sizes:
  - official kibana = 320.8 MB
  - blacktop/kibana = 245.8 MB
 
-**Alpine version is 75 MB smaller !**  
+**Alpine version is 77 MB smaller !**  
 
 ### Dependencies
 
@@ -39,8 +39,8 @@ REPOSITORY          TAG                 SIZE
 blacktop/kibana     latest              243.6 MB
 blacktop/kibana     5.1                 243.6 MB
 blacktop/kibana     5.0                 245.8 MB
-blacktop/kibana     x-pack              348.2 MB
-blacktop/kibana     4.6                 231 MB
+blacktop/kibana     x-pack              431.3 MB
+blacktop/kibana     4.6                 229.7 MB
 ```
 
 > **NOTE:** tag **x-pack** is the same as tag **latest**, but includes the *x-pack* plugin.  
