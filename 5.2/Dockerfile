@@ -4,7 +4,7 @@ MAINTAINER blacktop, https://github.com/blacktop
 
 RUN apk-install openjdk8-jre tini su-exec
 
-ENV KIBANA_VERSION 5.1.2
+ENV KIBANA_VERSION 5.2.2
 
 RUN apk-install bash nodejs
 RUN apk-install -t .build-deps wget ca-certificates \

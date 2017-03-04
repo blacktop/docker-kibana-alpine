@@ -1,7 +1,9 @@
 REPO=blacktop
 NAME=kibana
-BUILD ?= 5.1
-LATEST ?= 5.1
+BUILD ?= 5.2
+LATEST ?= 5.2
+
+all: build size test
 
 build:
 	cd $(BUILD); docker build -t $(REPO)/$(NAME):$(BUILD) .
@@ -16,4 +18,7 @@ endif
 tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(REPO)/$(NAME)
 
-.PHONY: build size tags
+test:
+	docker run --rm $(REPO)/$(NAME):$(BUILD)
+
+.PHONY: build size tags test
