@@ -40,7 +40,7 @@ blacktop/kibana     5.3                 247 MB
 blacktop/kibana     5.2                 246 MB
 blacktop/kibana     5.1                 246 MB
 blacktop/kibana     5.0                 245.8 MB
-blacktop/kibana     x-pack              431.3 MB
+blacktop/kibana     x-pack              440 MB
 blacktop/kibana     4.6                 229.7 MB
 ```
 
