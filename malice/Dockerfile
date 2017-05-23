@@ -2,7 +2,7 @@ FROM alpine:3.5
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV KIBANA_VERSION 5.1.2
+ENV KIBANA_VERSION 5.4.0
 
 ENV DOWNLOAD_URL "https://artifacts.elastic.co/downloads/kibana"
 ENV TARBAL "${DOWNLOAD_URL}/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz"
@@ -49,7 +49,7 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && apk del --purge .build-deps
 
 # Install Malice  plugin
-RUN kibana-plugin install https://github.com/maliceio/malice-kibana-plugin/releases/download/v$KIBANA_VERSION/malice-$KIBANA_VERSION.zip
+RUN kibana-plugin install https://github.com/maliceio/malice-kibana-plugin/releases/download/$KIBANA_VERSION/malice-$KIBANA_VERSION.zip
 
 COPY docker-entrypoint.sh /
 
