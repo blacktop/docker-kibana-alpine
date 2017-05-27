@@ -36,6 +36,7 @@ Compare Image Sizes:
 ```bash
 REPOSITORY          TAG                 SIZE
 blacktop/kibana     latest              205MB
+blacktop/kibana     6.0                 190MB
 blacktop/kibana     5.4                 205MB
 blacktop/kibana     5.3                 145MB
 blacktop/kibana     x-pack              339MB
