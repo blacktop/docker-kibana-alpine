@@ -21,4 +21,7 @@ tags:
 test:
 	docker run --rm $(REPO)/$(NAME):$(BUILD)
 
-.PHONY: build size tags test
+run:
+	docker run -d --name krun --link esrun:elasticsearch -p 5601:5601 $(REPO)/$(NAME):$(BUILD)
+
+.PHONY: build size tags test run
