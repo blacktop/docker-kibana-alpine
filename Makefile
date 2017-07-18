@@ -19,9 +19,8 @@ tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(REPO)/$(NAME)
 
 test:
-	docker run --rm $(REPO)/$(NAME):$(BUILD)
+	@docker-clean stop
+	@docker run -d --name elasticsearch -p 9200:9200 blacktop/elasticsearch:$(BUILD)
+	@docker run --rm --name kibana --link elasticsearch -p 5601:5601 $(REPO)/$(NAME):$(BUILD)
 
-run:
-	docker run -d --name krun --link esrun:elasticsearch -p 5601:5601 $(REPO)/$(NAME):$(BUILD)
-
-.PHONY: build size tags test run
+.PHONY: build size tags test
