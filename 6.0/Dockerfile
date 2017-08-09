@@ -2,7 +2,7 @@ FROM alpine:3.6
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV KIBANA_VERSION 6.0.0-alpha2
+ENV KIBANA_VERSION 6.0.0-beta1
 
 ENV DOWNLOAD_URL "https://artifacts.elastic.co/downloads/kibana"
 ENV TARBAL "${DOWNLOAD_URL}/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz"
