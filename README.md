@@ -3,7 +3,7 @@
 docker-kibana-alpine
 ====================
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-kibana-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kibana-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Image](https://img.shields.io/badge/docker%20image-188MB-blue.svg)](https://hub.docker.com/r/blacktop/kibana/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-kibana-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kibana-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Image](https://img.shields.io/badge/docker%20image-189MB-blue.svg)](https://hub.docker.com/r/blacktop/kibana/)
 
 Alpine Linux based [Kibana](https://www.elastic.co/products/kibana) Docker Image
 
@@ -35,9 +35,9 @@ Compare Image Sizes:
 
 ```bash
 REPOSITORY          TAG                 SIZE
-blacktop/kibana     latest              188MB
+blacktop/kibana     latest              189MB
 blacktop/kibana     6.0                 187MB
-blacktop/kibana     5.5                 188MB
+blacktop/kibana     5.5                 189MB
 blacktop/kibana     5.4                 203MB
 blacktop/kibana     5.3                 145MB
 blacktop/kibana     x-pack              404MB
@@ -52,8 +52,8 @@ blacktop/kibana     4.6                 229.7MB
 ### Getting Started
 
 ```bash
-$ docker run -d --name elastic -p 9200:9200 blacktop/elasticsearch
-$ docker run -d --name kibana --link elastic:elasticsearch -p 5601:5601 blacktop/kibana
+$ docker run --init -d --name elastic -p 9200:9200 blacktop/elasticsearch
+$ docker run --init -d --name kibana --link elastic:elasticsearch -p 5601:5601 blacktop/kibana
 ```
 
 ### Documentation
@@ -61,13 +61,13 @@ $ docker run -d --name kibana --link elastic:elasticsearch -p 5601:5601 blacktop
 #### To use your own elasticsearch address via `ELASTICSEARCH_URL`
 
 ```bash
-$ docker run -d --name kibana -e ELASTICSEARCH_URL=http://some-elasticsearch:9200 -p 5601:5601 blacktop/kibana
+$ docker run --init -d --name kibana -e ELASTICSEARCH_URL=http://some-elasticsearch:9200 -p 5601:5601 blacktop/kibana
 ```
 
 For elasticsearch running on a OSX host it would be
 
 ```bash
-$ docker run -d --name kibana \
+$ docker run --init -d --name kibana \
   -p 5601:5601 \
   --net host \
   -e ELASTICSEARCH_URL="http://$(ipconfig getifaddr en0):9200" \
@@ -77,7 +77,7 @@ $ docker run -d --name kibana \
 =OR=
 
 ```bash
-$ docker run -d --name kibana \
+$ docker run --init -d --name kibana \
   -p 5601:5601 \
   --net host \
   -e ELASTICSEARCH_URL=http://localhost:9200 \
