@@ -16,13 +16,13 @@ RUN apk add --no-cache bash nodejs su-exec
 RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && cd /tmp \
   && echo "===> Install Kibana..." \
-  && EXPECTED_SHA=$(wget --progress=bar:force -O- ${SHA1_URL}) \
-  && wget --progress=bar:force -Okibana.tar.gz "$TARBAL"; \
+  && EXPECTED_SHA=$(wget --progress=bar:force -O - ${SHA1_URL}) \
+  && wget --progress=bar:force -O kibana.tar.gz "$TARBAL"; \
   if [ "$EXPECTED_SHA" ]; then \
     echo "$EXPECTED_SHA *kibana.tar.gz" | sha1sum -c -; \
   fi; \
   if [ "$TARBALL_ASC" ]; then \
-    wget --progress=bar:force -Okibana.tar.gz.asc "$TARBALL_ASC"; \
+    wget --progress=bar:force -O kibana.tar.gz.asc "$TARBALL_ASC"; \
     export GNUPGHOME="$(mktemp -d)"; \
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY"; \
     gpg --batch --verify kibana.tar.gz.asc kibana.tar.gz; \
