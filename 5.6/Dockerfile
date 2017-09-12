@@ -2,7 +2,7 @@ FROM alpine:3.6
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV KIBANA_VERSION 6.0.0-beta2
+ENV KIBANA_VERSION 5.6.0
 
 ENV DOWNLOAD_URL "https://artifacts.elastic.co/downloads/kibana"
 ENV TARBAL "${DOWNLOAD_URL}/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz"
@@ -16,7 +16,7 @@ RUN apk add --no-cache bash nodejs su-exec
 RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && cd /tmp \
   && echo "===> Install Kibana..." \
-  && EXPECTED_SHA=$(wget -O - ${SHA1_URL}) \
+  && EXPECTED_SHA=$(wget --progress=bar:force -O - ${SHA1_URL}) \
   && wget --progress=bar:force -O kibana.tar.gz "$TARBAL"; \
   if [ "$EXPECTED_SHA" ]; then \
     echo "$EXPECTED_SHA *kibana.tar.gz" | sha1sum -c -; \
