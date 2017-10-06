@@ -3,12 +3,24 @@
 REPO=blacktop/kibana
 ORG=blacktop
 NAME=kibana
+# build info
 BUILD ?=$(shell cat LATEST)
 LATEST ?=$(shell cat LATEST)
+VERSION=$(shell cat "$(BUILD)/Dockerfile" | grep '^ENV VERSION' | cut -d" " -f3)
+# tarball info
+DOWNLOAD_URL=https://artifacts.elastic.co/downloads/$(NAME)
+SHA_URL=$(DOWNLOAD_URL)/$(NAME)-$(VERSION)-linux-x86_64.tar.gz.sha512
+TARBALL_SHA=$(shell curl -s "$(SHA_URL)")
+
 
 all: build size test
 
-build: ## Build docker image
+dockerfile: ## Update Dockerfiles
+	@echo "===> Getting $(NAME) tarball sha1 for version: $(VERSION)"
+	@echo " * TARBALL_SHA=$(TARBALL_SHA)"
+	sed -i.bu 's/TARBALL_SHA "[0-9a-f.]\{128\}"/TARBALL_SHA "$(TARBALL_SHA)"/' $(BUILD)/Dockerfile
+
+build: dockerfile ## Build docker image
 	cd $(BUILD); docker build -t $(ORG)/$(NAME):$(BUILD) .
 
 size: build ## Get built image size

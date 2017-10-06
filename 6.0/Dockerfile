@@ -2,12 +2,11 @@ FROM alpine:3.6
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV KIBANA_VERSION 6.0.0-beta2
-
+ENV VERSION 6.0.0-rc1
 ENV DOWNLOAD_URL "https://artifacts.elastic.co/downloads/kibana"
-ENV TARBAL "${DOWNLOAD_URL}/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz"
-ENV TARBALL_ASC "${DOWNLOAD_URL}/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz.asc"
-ENV SHA1_URL "${DOWNLOAD_URL}/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz.sha1"
+ENV TARBAL "${DOWNLOAD_URL}/kibana-${VERSION}-linux-x86_64.tar.gz"
+ENV TARBALL_ASC "${DOWNLOAD_URL}/kibana-${VERSION}-linux-x86_64.tar.gz.asc"
+ENV TARBALL_SHA "ac13a76c67c43eeb6181806a9a7424b51697ea49473e6d29350f962151ee33f4013bb75872eefb42daa4fbf33c4d0d697c3caae5af2fede631f89c33ba691157"
 ENV GPG_KEY "46095ACC8548582C1A2699A9D27D666CD88E42B4"
 
 ENV PATH /usr/share/kibana/bin:$PATH
@@ -16,10 +15,9 @@ RUN apk add --no-cache bash nodejs su-exec
 RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && cd /tmp \
   && echo "===> Install Kibana..." \
-  && EXPECTED_SHA=$(wget -O - ${SHA1_URL}) \
   && wget --progress=bar:force -O kibana.tar.gz "$TARBAL"; \
-  if [ "$EXPECTED_SHA" ]; then \
-    echo "$EXPECTED_SHA *kibana.tar.gz" | sha1sum -c -; \
+  if [ "$TARBALL_SHA" ]; then \
+    echo "$TARBALL_SHA *kibana.tar.gz" | sha512sum -c -; \
   fi; \
   if [ "$TARBALL_ASC" ]; then \
     wget --progress=bar:force -O kibana.tar.gz.asc "$TARBALL_ASC"; \
@@ -30,7 +28,7 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   fi; \
   tar -xf kibana.tar.gz \
   && ls -lah \
-  && mv kibana-$KIBANA_VERSION-linux-x86_64 /usr/share/kibana \
+  && mv kibana-$VERSION-linux-x86_64 /usr/share/kibana \
   && adduser -DH -s /sbin/nologin kibana \
   # the default "server.host" is "localhost" in 5+
   && sed -ri "s!^(\#\s*)?(server\.host:).*!\2 '0.0.0.0'!" /usr/share/kibana/config/kibana.yml \
