@@ -2,17 +2,18 @@ FROM alpine:3.6
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV VERSION 5.6.4
+ENV VERSION 5.6.5
 ENV DOWNLOAD_URL "https://artifacts.elastic.co/downloads/kibana"
 ENV TARBAL "${DOWNLOAD_URL}/kibana-${VERSION}-linux-x86_64.tar.gz"
 ENV TARBALL_ASC "${DOWNLOAD_URL}/kibana-${VERSION}-linux-x86_64.tar.gz.asc"
-ENV TARBALL_SHA "9cf1633405bd3513ca1533786aa46d0b17d28a0dfe7762018c744a693efbcfec9e24e0e222d1192d2cb12a664a391bc8fd072b82236c2bbfadb786ddcadecfef"
+ENV TARBALL_SHA "96ff8c183877365cc444631d0dd29d231f8d732e835f1657ccca23ce461e94455915d4785ace79ef01e2b2277dcbba28869b18f4c29a5319ab8b59ce4a581d43"
 ENV GPG_KEY "46095ACC8548582C1A2699A9D27D666CD88E42B4"
 
 ENV PATH /usr/share/kibana/bin:$PATH
 
 RUN apk add --no-cache bash nodejs su-exec
 RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
+  && set -e \
   && cd /tmp \
   && echo "===> Install Kibana..." \
   && wget --progress=bar:force -O kibana.tar.gz "$TARBAL"; \
@@ -24,7 +25,7 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
     export GNUPGHOME="$(mktemp -d)"; \
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY"; \
     gpg --batch --verify kibana.tar.gz.asc kibana.tar.gz; \
-    rm -r "$GNUPGHOME" kibana.tar.gz.asc; \
+    rm -rf "$GNUPGHOME" kibana.tar.gz.asc; \
   fi; \
   tar -xf kibana.tar.gz \
   && ls -lah \

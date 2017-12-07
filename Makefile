@@ -1,28 +1,27 @@
-.PHONY: build size tags test tar push run ssh stop circle
-
 REPO=blacktop/kibana
 ORG=blacktop
 NAME=kibana
 # build info
 BUILD ?=$(shell cat LATEST)
 LATEST ?=$(shell cat LATEST)
-VERSION=$(shell cat "$(BUILD)/Dockerfile" | grep '^ENV VERSION' | cut -d" " -f3)
-# tarball info
-DOWNLOAD_URL=https://artifacts.elastic.co/downloads/$(NAME)
-SHA_URL=$(DOWNLOAD_URL)/$(NAME)-$(VERSION)-linux-x86_64.tar.gz.sha512
-TARBALL_SHA=$(shell curl -s "$(SHA_URL)")
 
 
-all: build size test
+all: update build size test
 
+BUILDS=6.0 5.6 x-pack
+.PHONY: update
+update:
+	$(foreach build,$(BUILDS),NAME=$(NAME) BUILD=$(build) $(MAKE) dockerfile;)
+
+.PHONY: dockerfile
 dockerfile: ## Update Dockerfiles
-	@echo "===> Getting $(NAME) tarball sha1 for version: $(VERSION)"
-	@echo " * TARBALL_SHA=$(TARBALL_SHA)"
-	sed -i.bu 's/TARBALL_SHA "[0-9a-f.]\{128\}"/TARBALL_SHA "$(TARBALL_SHA)"/' $(BUILD)/Dockerfile
+	scripts/update_dockerfile.sh
 
-build: dockerfile ## Build docker image
+.PHONY: build
+build: ## Build docker image
 	cd $(BUILD); docker build -t $(ORG)/$(NAME):$(BUILD) .
 
+.PHONY: size
 size: build ## Get built image size
 ifeq "$(BUILD)" "$(LATEST)"
 	sed -i.bu 's/docker%20image-.*-blue/docker%20image-$(shell docker images --format "{{.Size}}" $(ORG)/$(NAME):$(BUILD)| cut -d' ' -f1)-blue/' README.md
@@ -30,31 +29,38 @@ ifeq "$(BUILD)" "$(LATEST)"
 endif
 	sed -i.bu '/$(BUILD)/ s/[0-9.]\{3,5\}MB/$(shell docker images --format "{{.Size}}" $(ORG)/$(NAME):$(BUILD))/' README.md
 
+.PHONY: tags
 tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(ORG)/$(NAME)
 
+.PHONY: test
 test: stop ## Test docker image
 	@docker run --init -d --name elasticsearch -p 9200:9200 blacktop/elasticsearch:$(BUILD); sleep 10;
 	@docker run --init -d --name $(NAME) --link elasticsearch -p 5601:5601 $(ORG)/$(NAME):$(BUILD)
 	@docker logs $(NAME)
 
+.PHONY: tar
 tar: ## Export tar of docker image
 	docker save $(ORG)/$(NAME):$(BUILD) -o $(NAME).tar
 
+.PHONY: push
 push: build ## Push docker image to docker registry
 	@echo "===> Pushing $(ORG)/$(NAME):$(BUILD) to docker hub..."
 	@docker push $(ORG)/$(NAME):$(BUILD)
 
+.PHONY: run
 run: stop ## Run docker container
 	@docker run --init -d --name $(NAME) -p 5601:5601 $(ORG)/$(NAME):$(BUILD)
 
+.PHONY: ssh
 ssh: ## SSH into docker image
-	@docker run --init -it --rm --entrypoint=sh $(ORG)/$(NAME):$(BUILD)
+	@docker run --init -it --rm --entrypoint=bash $(ORG)/$(NAME):$(BUILD)
 
-stop: ## Kill running malice-engine docker containers
+.PHONY: stop
+stop: ## Kill running docker containers
 	@docker rm -f $(NAME) || true
-	@docker rm -f elasticsearch || true
 
+.PHONY: circle
 circle: ci-size ## Get docker image size from CircleCI
 	@sed -i.bu 's/docker%20image-.*-blue/docker%20image-$(shell cat .circleci/SIZE)-blue/' README.md
 	@echo "===> Image size is: $(shell cat .circleci/SIZE)"
@@ -67,10 +73,10 @@ ci-size: ci-build
 	@echo "===> Getting image build size from CircleCI"
 	@http "$(shell http https://circleci.com/api/v1.1/project/github/${REPO}/$(shell cat .circleci/build_num)/artifacts circle-token==${CIRCLE_TOKEN} | jq '.[].url')" > .circleci/SIZE
 
+.PHONY: clean
 clean: ## Clean docker image and stop all running containers
 	docker-clean stop
 	docker rmi $(ORG)/$(NAME):$(BUILD) || true
-	rm -rf malice/build
 
 # Absolutely awesome: http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 help:
