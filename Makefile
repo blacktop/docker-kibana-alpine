@@ -15,7 +15,7 @@ update:
 
 .PHONY: dockerfile
 dockerfile: ## Update Dockerfiles
-	scripts/update_dockerfile.sh
+	hack/make/dockerfile
 
 .PHONY: build
 build: ## Build docker image
