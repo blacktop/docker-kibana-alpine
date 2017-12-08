@@ -13,7 +13,7 @@ ENV PATH /usr/share/kibana/bin:$PATH
 
 RUN apk add --no-cache bash nodejs su-exec
 RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
-  && set -e \
+  && set -ex \
   && cd /tmp \
   && echo "===> Install Kibana..." \
   && wget --progress=bar:force -O kibana.tar.gz "$TARBAL"; \
