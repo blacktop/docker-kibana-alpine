@@ -33,6 +33,10 @@ endif
 tags:
 	docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}" $(ORG)/$(NAME)
 
+.PHONY: tag
+tag:
+	ORG=$(ORG) NAME=$(NAME) BUILD=$(BUILD) hack/make/tag
+
 .PHONY: test
 test: stop ## Test docker image
 	@docker run --init -d --name elasticsearch -p 9200:9200 blacktop/elasticsearch:$(BUILD); sleep 10;
