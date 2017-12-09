@@ -13,7 +13,7 @@ ENV PATH /usr/share/kibana/bin:$PATH
 
 RUN apk add --no-cache bash nodejs su-exec
 RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
-  && set -e \
+  && set -ex \
   && cd /tmp \
   && echo "===> Install Kibana..." \
   && wget --progress=bar:force -O kibana.tar.gz "$TARBAL"; \
@@ -23,9 +23,11 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   if [ "$TARBALL_ASC" ]; then \
     wget --progress=bar:force -O kibana.tar.gz.asc "$TARBALL_ASC"; \
     export GNUPGHOME="$(mktemp -d)"; \
-    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY"; \
-    gpg --batch --verify kibana.tar.gz.asc kibana.tar.gz; \
-    rm -rf "$GNUPGHOME" kibana.tar.gz.asc; \
+    ( gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY" \
+      || gpg --keyserver pgp.mit.edu --recv-keys "$GPG_KEY" \
+      || gpg --keyserver keyserver.pgp.com --recv-keys "$GPG_KEY" ); \
+		gpg --batch --verify logstash.tar.gz.asc logstash.tar.gz; \
+		rm -rf "$GNUPGHOME" logstash.tar.gz.asc || true; \
   fi; \
   tar -xf kibana.tar.gz \
   && ls -lah \
