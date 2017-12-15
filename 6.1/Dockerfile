@@ -49,9 +49,6 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && rm -rf /tmp/* \
   && apk del --purge .build-deps
 
-# Install X-Pack plugin
-RUN kibana-plugin install x-pack
-
 COPY docker-entrypoint.sh /
 
 WORKDIR /usr/share/kibana
