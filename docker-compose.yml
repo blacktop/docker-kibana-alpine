@@ -4,40 +4,19 @@ services:
   #############################
   # ELASTICSEARCH MASTER NODE #
   #############################
-  master:
-    restart: unless-stopped
-    image: blacktop/elasticsearch:x-pack
-    command: master
-    # volumes:
-    #   - data:/usr/share/elasticsearch/data
-    networks:
-      - elastic
-  ####################################
-  # ELASTICSEARCH CLIENT/INGEST NODE #
-  ####################################
-  ingest:
-    restart: unless-stopped
-    image: blacktop/elasticsearch:x-pack
-    command: ingest
-    ports:
-      - "9200:9200"
-    links:
-     - master:elastic-master
-    networks:
-      - elastic
-  ###########################
-  # ELASTICSEARCH DATA NODE #
-  ###########################
-  data:
+  elasticsearch:
     restart: unless-stopped
     image: blacktop/elasticsearch:x-pack
     environment:
-      - ES_JAVA_OPTS=-Xms2g -Xmx2g
-    command: data
-    links:
-     - master:elastic-master
+      - cluster.name=docker-cluster
+      - network.host=0
+      - ELASTIC_PASSWORD=pleasechangeme
+      - xpack.security.transport.filter.enabled=false
+      - xpack.security.audit.enabled=true
     # volumes:
     #   - data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
     networks:
       - elastic
   ###############
@@ -45,10 +24,15 @@ services:
   ###############
   kibana:
     image: blacktop/kibana:x-pack
+    environment:
+      - elasticsearch.url=http://elasticsearch:9200
+      - elasticsearch.username=elastic
+      - elasticsearch.password=pleasechangeme
+      # - xpack.monitoring.ui.container.elasticsearch.enabled=true
     ports:
       - "80:5601"
     links:
-     - ingest:elasticsearch
+     - elasticsearch
     networks:
       - elastic
 #############################
