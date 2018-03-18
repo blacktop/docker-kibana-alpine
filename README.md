@@ -61,8 +61,8 @@ Getting Started
 ---------------
 
 ```bash
-$ docker run --init -d --name elastic -p 9200:9200 blacktop/elasticsearch
-$ docker run --init -d --name kibana --link elastic:elasticsearch -p 5601:5601 blacktop/kibana
+$ docker run --init -d --name elasticsearch -p 9200:9200 blacktop/elasticsearch
+$ docker run --init -d --name kibana --link elasticsearch -p 5601:5601 blacktop/kibana
 ```
 
 Documentation
@@ -71,7 +71,7 @@ Documentation
 ### To use your own elasticsearch address via `ELASTICSEARCH_URL`
 
 ```bash
-$ docker run --init -d --name kibana -e ELASTICSEARCH_URL=http://some-elasticsearch:9200 -p 5601:5601 blacktop/kibana
+$ docker run --init -d --name kibana -e KIBANA_ELASTICSEARCH_URL=http://some-elasticsearch:9200 -p 5601:5601 blacktop/kibana
 ```
 
 For elasticsearch running on a OSX host it would be
@@ -80,7 +80,7 @@ For elasticsearch running on a OSX host it would be
 $ docker run --init -d --name kibana \
   -p 5601:5601 \
   --net host \
-  -e ELASTICSEARCH_URL="http://$(ipconfig getifaddr en0):9200" \
+  -e KIBANA_ELASTICSEARCH_URL="http://$(ipconfig getifaddr en0):9200" \
   blacktop/kibana
 ```
 
@@ -90,9 +90,16 @@ $ docker run --init -d --name kibana \
 $ docker run --init -d --name kibana \
   -p 5601:5601 \
   --net host \
-  -e ELASTICSEARCH_URL=http://localhost:9200 \
+  -e KIBANA_ELASTICSEARCH_URL=http://localhost:9200 \
   blacktop/kibana
 ```
+
+### Customize at runtime via environment variables
+
+There are two types of env vars:
+
+-	`KIBANA_ELASTICSEARCH_URL=http://localhost:9200`
+-	`elasticsearch.url=http://localhost:9200`
 
 Issues
 ------

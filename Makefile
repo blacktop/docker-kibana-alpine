@@ -40,7 +40,7 @@ tag:
 .PHONY: test
 test: stop ## Test docker image
 	@docker run --init -d --name elasticsearch -p 9200:9200 blacktop/elasticsearch:$(BUILD); sleep 10;
-	@docker run --init -d --name $(NAME) --link elasticsearch -p 5601:5601 $(ORG)/$(NAME):$(BUILD)
+	@docker run --init -d --name $(NAME) --link elasticsearch -e KIBANA_ELASTICSEARCH_URL=http://elasticsearch:9200 -p 5601:5601 $(ORG)/$(NAME):$(BUILD)
 	@docker logs $(NAME)
 
 .PHONY: tar
@@ -62,6 +62,7 @@ ssh: ## SSH into docker image
 
 .PHONY: stop
 stop: ## Kill running docker containers
+	@docker rm -f elasticsearch || true
 	@docker rm -f $(NAME) || true
 
 .PHONY: circle
