@@ -2,11 +2,11 @@ FROM alpine:3.7
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV VERSION 6.1.3
+ENV VERSION 6.1.4
 ENV DOWNLOAD_URL "https://artifacts.elastic.co/downloads/kibana"
 ENV TARBAL "${DOWNLOAD_URL}/kibana-${VERSION}-linux-x86_64.tar.gz"
 ENV TARBALL_ASC "${DOWNLOAD_URL}/kibana-${VERSION}-linux-x86_64.tar.gz.asc"
-ENV TARBALL_SHA "1478215b8ac735d69ea6c5d019a44d8ea40e5e400c13e2c4031bf1b4edb3b796cdecf4a97669dfa27d1a976e0246235e1628a036196d3d70bcb95323d10de5b8"
+ENV TARBALL_SHA "577189ab671300e61a37d85343d70ca67c5f2651fbd0b56ffe68845121d39615a7691e4a286cb93fb6f727582b223399c7a556cbcf3311c4c520e565f9f3d62d"
 ENV GPG_KEY "46095ACC8548582C1A2699A9D27D666CD88E42B4"
 
 ENV PATH /usr/share/kibana/bin:$PATH
@@ -18,16 +18,16 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && echo "===> Install Kibana..." \
   && wget --progress=bar:force -O kibana.tar.gz "$TARBAL"; \
   if [ "$TARBALL_SHA" ]; then \
-    echo "$TARBALL_SHA *kibana.tar.gz" | sha512sum -c -; \
+  echo "$TARBALL_SHA *kibana.tar.gz" | sha512sum -c -; \
   fi; \
   if [ "$TARBALL_ASC" ]; then \
-    wget --progress=bar:force -O kibana.tar.gz.asc "$TARBALL_ASC"; \
-    export GNUPGHOME="$(mktemp -d)"; \
-    ( gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY" \
-      || gpg --keyserver pgp.mit.edu --recv-keys "$GPG_KEY" \
-      || gpg --keyserver keyserver.pgp.com --recv-keys "$GPG_KEY" ); \
-		gpg --batch --verify kibana.tar.gz.asc kibana.tar.gz; \
-		rm -rf "$GNUPGHOME" kibana.tar.gz.asc || true; \
+  wget --progress=bar:force -O kibana.tar.gz.asc "$TARBALL_ASC"; \
+  export GNUPGHOME="$(mktemp -d)"; \
+  ( gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPG_KEY" \
+  || gpg --keyserver pgp.mit.edu --recv-keys "$GPG_KEY" \
+  || gpg --keyserver keyserver.pgp.com --recv-keys "$GPG_KEY" ); \
+  gpg --batch --verify kibana.tar.gz.asc kibana.tar.gz; \
+  rm -rf "$GNUPGHOME" kibana.tar.gz.asc || true; \
   fi; \
   tar -xf kibana.tar.gz \
   && ls -lah \
