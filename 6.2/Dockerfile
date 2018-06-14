@@ -3,10 +3,10 @@ FROM alpine:3.7
 LABEL maintainer "https://github.com/blacktop"
 
 ENV VERSION 6.2.4
-ENV DOWNLOAD_URL "https://artifacts.elastic.co/downloads/kibana"
+ENV DOWNLOAD_URL https://artifacts.elastic.co/downloads/kibana
 ENV TARBAL "${DOWNLOAD_URL}/kibana-${VERSION}-linux-x86_64.tar.gz"
 ENV TARBALL_ASC "${DOWNLOAD_URL}/kibana-${VERSION}-linux-x86_64.tar.gz.asc"
-ENV TARBALL_SHA ""
+ENV TARBALL_SHA "125c2002e1a3b197f9f0d6200f2979f2e5974a902bfec2baa4b34a0c8d55babccafdb87b8a7b69c61ca4c02b8ae97e69b9b2743f7d445f0e53e31c69288296d5"
 ENV GPG_KEY "46095ACC8548582C1A2699A9D27D666CD88E42B4"
 
 ENV PATH /usr/share/kibana/bin:$PATH
