@@ -1,9 +1,9 @@
 #!/bin/bash
 
 VERSION=$(cat "$BUILD/Dockerfile" | grep '^ENV VERSION' | cut -d" " -f3)
-# tarball info
-DOWNLOAD_URL=https://artifacts.elastic.co/downloads/$NAME
-SHA_URL=$DOWNLOAD_URL/$NAME-$VERSION-linux-x86_64.tar.gz.sha512
+DOWNLOAD_URL=$(cat "$BUILD/Dockerfile" | grep '^ENV DOWNLOAD_URL' | cut -d" " -f3)
+TARBAL_URL=$(cat "$BUILD/Dockerfile" | grep '^ENV TARBAL ' | cut -d" " -f3)
+SHA_URL=$(eval echo $TARBAL_URL.sha512)
 
 echo "===> Getting $BUILD tarball sha1 for version: $VERSION"
 TARBALL_SHA=$(curl -s "$SHA_URL" | cut -d" " -f1)
