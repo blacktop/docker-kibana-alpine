@@ -1,4 +1,4 @@
-FROM node:6.12.2-alpine
+FROM node:8.11.0-alpine
 # FROM alpine:3.7
 
 LABEL maintainer "https://github.com/blacktop"
@@ -49,9 +49,6 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && chown -R kibana:kibana /usr/share/kibana \
   && rm -rf /tmp/* \
   && apk del --purge .build-deps
-
-# Install X-Pack plugin
-RUN kibana-plugin install x-pack
 
 COPY docker-entrypoint.sh /
 
