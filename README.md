@@ -63,7 +63,7 @@ $ docker run --init -d --name kibana --link elasticsearch -p 5601:5601 blacktop/
 
 ## Documentation
 
-### To use your own elasticsearch address via `ELASTICSEARCH_URL`
+### To use your own elasticsearch address via `KIBANA_ELASTICSEARCH_URL`
 
 ```bash
 $ docker run --init -d --name kibana -e KIBANA_ELASTICSEARCH_URL=http://some-elasticsearch:9200 -p 5601:5601 blacktop/kibana
