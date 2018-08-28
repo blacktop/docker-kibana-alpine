@@ -2,13 +2,13 @@ REPO=blacktop/kibana
 ORG=blacktop
 NAME=kibana
 # build info
-BUILD ?=$(shell cat LATEST)
-LATEST ?=$(shell cat LATEST)
+LATEST?=$(shell cat LATEST)
+BUILD?=$(LATEST)
+BUILDS=$(LATEST) 6.3 6.2 6.1 6.0 5.6 x-pack
 
 
 all: update build size test
 
-BUILDS=6.3 6.2 6.1 6.0 5.6 x-pack
 .PHONY: update
 update:
 	$(foreach build,$(BUILDS),NAME=$(NAME) BUILD=$(build) $(MAKE) dockerfile;)
