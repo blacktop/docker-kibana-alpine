@@ -33,6 +33,16 @@ if [[ "$1" == -* ]]; then
 	set -- kibana "$@"
 fi
 
+# Take ownership of SSL certs
+if [[ -n "$KIBANA_SERVER_SSL" ]]; then
+    if [[ -n "$KIBANA_SERVER_SSL_KEY" ]]; then
+        chown kibana:kibana $KIBANA_SERVER_SSL_KEY
+    fi
+    if [[ -n "$KIBANA_SERVER_SSL_KEY" ]]; then
+        chown kibana:kibana $KIBANA_SERVER_SSL_KEY
+    fi
+fi
+
 # Run as user "kibana" if the command is "kibana"
 if [ "$1" = 'kibana' -a "$(id -u)" = '0' ]; then
 	echo "$@" "${kb_opts[@]}"
