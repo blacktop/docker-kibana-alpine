@@ -28,11 +28,6 @@ do
     fi
 done < <(env)
 
-# Add kibana as command if needed
-if [[ "$1" == -* ]]; then
-	set -- kibana "$@"
-fi
-
 # Take ownership of SSL certs
 if [[ -n "$KIBANA_SERVER_SSL" ]]; then
     if [[ -n "$KIBANA_SERVER_SSL_KEY" ]]; then
@@ -41,6 +36,11 @@ if [[ -n "$KIBANA_SERVER_SSL" ]]; then
     if [[ -n "$KIBANA_SERVER_SSL_KEY" ]]; then
         chown kibana:kibana $KIBANA_SERVER_SSL_KEY
     fi
+fi
+
+# Add kibana as command if needed
+if [[ "$1" == -* ]]; then
+	set -- kibana "$@"
 fi
 
 # Run as user "kibana" if the command is "kibana"

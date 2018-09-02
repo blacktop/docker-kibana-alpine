@@ -64,6 +64,13 @@ $ docker run --init -d --name kibana --link elasticsearch -p 5601:5601 blacktop/
 
 ## Documentation
 
+### Customize at runtime via environment variables
+
+There are two types of env vars:
+
+- `KIBANA_ELASTICSEARCH_URL=http://localhost:9200`
+- `elasticsearch.url=http://localhost:9200`
+
 ### To use your own elasticsearch address via `KIBANA_ELASTICSEARCH_URL`
 
 ```bash
@@ -80,22 +87,21 @@ $ docker run --init -d --name kibana \
   blacktop/kibana
 ```
 
-=OR=
+For `x-pack` with basic auth:
 
 ```bash
 $ docker run --init -d --name kibana \
-  -p 5601:5601 \
-  --net host \
-  -e KIBANA_ELASTICSEARCH_URL=http://localhost:9200 \
-  blacktop/kibana
+             --restart unless-stopped \
+             -p 443:5601 \
+             -v /etc/letsencrypt/archive/demo.malice.io:/certs \
+             -e KIBANA_SERVER_SSL_ENABLED=true \
+             -e KIBANA_SERVER_SSL_KEY=/certs/privkey1.pem \
+             -e KIBANA_SERVER_SSL_CERTIFICATE=/certs/cert1.pem \
+             -e KIBANA_ELASTICSEARCH_URL=$KIBANA_ELASTICSEARCH_URL \
+             -e KIBANA_ELASTICSEARCH_USERNAME=$KIBANA_ELASTICSEARCH_USERNAME \
+             -e KIBANA_ELASTICSEARCH_PASSWORD=$KIBANA_ELASTICSEARCH_PASSWORD \
+             blacktop/kibana:x-pack
 ```
-
-### Customize at runtime via environment variables
-
-There are two types of env vars:
-
-- `KIBANA_ELASTICSEARCH_URL=http://localhost:9200`
-- `elasticsearch.url=http://localhost:9200`
 
 ## Issues
 
