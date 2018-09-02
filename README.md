@@ -23,14 +23,14 @@ Alpine Linux based [Kibana](https://www.elastic.co/products/kibana) Docker Image
 
 Compare Image Sizes:
 
-- official kibana = 985 MB
-- blacktop/kibana = 309 MB
+- official kibana = 667MB
+- blacktop/kibana = 250MB
 
-**Alpine version is 676 MB smaller !**
+**Alpine version is 417 MB smaller !**
 
 ## Dependencies
 
-- [alpine:3.7](https://hub.docker.com/_/alpine/)
+- [alpine:3.8](https://hub.docker.com/_/alpine/)
 
 ## Image Tags
 
