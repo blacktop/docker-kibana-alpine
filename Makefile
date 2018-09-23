@@ -42,6 +42,7 @@ test: stop ## Test docker image
 	@docker run --init -d --name elasticsearch -p 9200:9200 blacktop/elasticsearch:$(BUILD); sleep 10;
 	@docker run --init -d --name $(NAME) --link elasticsearch -e KIBANA_ELASTICSEARCH_URL=http://elasticsearch:9200 -p 5601:5601 $(ORG)/$(NAME):$(BUILD)
 	@docker logs $(NAME)
+	@open http://localhost:5601
 
 .PHONY: tar
 tar: ## Export tar of docker image

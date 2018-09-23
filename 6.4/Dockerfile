@@ -2,11 +2,11 @@ FROM alpine:3.8
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV VERSION 6.4.0
+ENV VERSION 6.4.1
 ENV DOWNLOAD_URL https://artifacts.elastic.co/downloads/kibana
 ENV TARBAL "${DOWNLOAD_URL}/kibana-oss-${VERSION}-linux-x86_64.tar.gz"
 ENV TARBALL_ASC "${DOWNLOAD_URL}/kibana-oss-${VERSION}-linux-x86_64.tar.gz.asc"
-ENV TARBALL_SHA "eec78bb1935fdc126f7c69ea08c0997abc74f435f5ca24aa6fa370ad201dd1ebe9ab1d177f64ec66652a3c9c0dd3f13a8fa7866697d3f201f8bc124c051ebeba"
+ENV TARBALL_SHA "54c4f997037a7d3ff8820abfef72914674d733a05906bf692bb33a8c49f61d7d0e362eefc9ef522e848bff354ebfeade507aecdb5e9652bcedb1d2b9167daeb0"
 ENV GPG_KEY "46095ACC8548582C1A2699A9D27D666CD88E42B4"
 
 ENV PATH /usr/share/kibana/bin:$PATH
