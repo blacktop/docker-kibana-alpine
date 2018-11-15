@@ -2,7 +2,7 @@
 
 # docker-kibana-alpine
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-kibana-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kibana-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Image](https://img.shields.io/badge/docker%20image-250MB-blue.svg)](https://hub.docker.com/r/blacktop/kibana/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-kibana-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kibana-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Image](https://img.shields.io/badge/docker%20image-270MB-blue.svg)](https://hub.docker.com/r/blacktop/kibana/)
 
 Alpine Linux based [Kibana](https://www.elastic.co/products/kibana) Docker Image
 
@@ -36,7 +36,8 @@ Compare Image Sizes:
 
 ```bash
 REPOSITORY          TAG                 SIZE
-blacktop/kibana     latest              250MB
+blacktop/kibana     latest              270MB
+blacktop/kibana     6.5                 270MB
 blacktop/kibana     6.4                 250MB
 blacktop/kibana     6.3                 316MB
 blacktop/kibana     6.2                 309MB

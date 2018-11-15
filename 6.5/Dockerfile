@@ -1,18 +1,17 @@
-FROM node:8.11.4-alpine
-# FROM alpine:3.7
+FROM alpine:3.8
 
 LABEL maintainer "https://github.com/blacktop"
 
 ENV VERSION 6.5.0
 ENV DOWNLOAD_URL https://artifacts.elastic.co/downloads/kibana
-ENV TARBAL "${DOWNLOAD_URL}/kibana-${VERSION}-linux-x86_64.tar.gz"
-ENV TARBALL_ASC "${DOWNLOAD_URL}/kibana-${VERSION}-linux-x86_64.tar.gz.asc"
-ENV TARBALL_SHA "b2bd156101445209d84db6964b86e6ac832c7156f6f0e64453785f45b4f55248503889e1ae4f09b461fb383d9f29e819c2fc1b1b15ee675b5b2487812be27098"
+ENV TARBAL "${DOWNLOAD_URL}/kibana-oss-${VERSION}-linux-x86_64.tar.gz"
+ENV TARBALL_ASC "${DOWNLOAD_URL}/kibana-oss-${VERSION}-linux-x86_64.tar.gz.asc"
+ENV TARBALL_SHA "bbeb7a6d29ffd395ffe63638e5361401e1543c00467aa0c1a026864125de716f276f81c9ed370bae932103d0fc315b799d4a21dd1f118062350f5fe77f34b585"
 ENV GPG_KEY "46095ACC8548582C1A2699A9D27D666CD88E42B4"
 
 ENV PATH /usr/share/kibana/bin:$PATH
 
-RUN apk add --no-cache bash su-exec
+RUN apk add --no-cache bash nodejs su-exec
 RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && set -ex \
   && cd /tmp \
