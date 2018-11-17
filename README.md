@@ -101,6 +101,8 @@ $ docker run --init -d --name kibana \
              -e KIBANA_ELASTICSEARCH_URL=$KIBANA_ELASTICSEARCH_URL \
              -e KIBANA_ELASTICSEARCH_USERNAME=$KIBANA_ELASTICSEARCH_USERNAME \
              -e KIBANA_ELASTICSEARCH_PASSWORD=$KIBANA_ELASTICSEARCH_PASSWORD \
+             --log-opt max-size=100m \
+             --log-opt max-file=3 \
              blacktop/kibana:x-pack
 ```
 
