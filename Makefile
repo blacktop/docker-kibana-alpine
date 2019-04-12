@@ -4,7 +4,7 @@ NAME=kibana
 # build info
 LATEST?=$(shell cat LATEST)
 BUILD?=$(LATEST)
-BUILDS=$(LATEST) 7.0 6.7 6.6 5.6 x-pack
+BUILDS=$(LATEST) 7.0 6.7 5.6 x-pack
 
 
 all: update build size test
@@ -40,7 +40,7 @@ tag:
 .PHONY: test
 test: stop ## Test docker image
 	@docker run --init -d --name elasticsearch -p 9200:9200 blacktop/elasticsearch:$(BUILD); sleep 10;
-	@docker run --init -d --name $(NAME) --link elasticsearch -e KIBANA_ELASTICSEARCH_URL=http://elasticsearch:9200 -p 5601:5601 $(ORG)/$(NAME):$(BUILD)
+	@docker run --init -d --name $(NAME) --link elasticsearch -e KIBANA_ELASTICSEARCH_HOSTS=http://elasticsearch:9200 -p 5601:5601 $(ORG)/$(NAME):$(BUILD)
 	@docker logs $(NAME)
 	@open http://localhost:5601
 

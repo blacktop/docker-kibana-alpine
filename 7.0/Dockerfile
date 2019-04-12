@@ -2,11 +2,11 @@ FROM node:10.15.2-alpine
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV VERSION 7.0.0-rc2
+ENV VERSION 7.0.0
 ENV DOWNLOAD_URL https://artifacts.elastic.co/downloads/kibana
 ENV TARBAL "${DOWNLOAD_URL}/kibana-oss-${VERSION}-linux-x86_64.tar.gz"
 ENV TARBALL_ASC "${DOWNLOAD_URL}/kibana-oss-${VERSION}-linux-x86_64.tar.gz.asc"
-ENV TARBALL_SHA "571c9a034fe68b0f0faf28996f3b52768d9edaff3c9e7bdb3215b6555cd38ae76b9c7f497d53b748020f4068a29be34818963a924787aea84afe3cc2a298d450"
+ENV TARBALL_SHA "091ab4fbf0aec782307b7313dec82e6437be4cb76efac49eed6434c393e9adda3f925d6a75be4b78c9768c943168881dc38aa7b1b23462af80d5d158b3806136"
 ENV GPG_KEY "46095ACC8548582C1A2699A9D27D666CD88E42B4"
 
 ENV PATH /usr/share/kibana/bin:$PATH
@@ -35,9 +35,9 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && adduser -DH -s /sbin/nologin kibana \
   # usr alpine nodejs and not bundled version
   && bundled='NODE="${DIR}/node/bin/node"' \
-  && apline_node='NODE="/usr/bin/node"' \
-  && sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana-plugin \
-  && sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana \
+  && alpine_node='NODE="/usr/local/bin/node"' \
+  && sed -i "s|$bundled|$alpine_node|g" /usr/share/kibana/bin/kibana-plugin \
+  && sed -i "s|$bundled|$alpine_node|g" /usr/share/kibana/bin/kibana \
   && rm -rf /usr/share/kibana/node \
   && chown -R kibana:kibana /usr/share/kibana \
   && rm -rf /tmp/* \
