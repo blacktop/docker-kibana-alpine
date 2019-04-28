@@ -55,7 +55,7 @@ push: build ## Push docker image to docker registry
 
 .PHONY: run
 run: stop ## Run docker container
-	@docker run --init -d --name $(NAME) -p 5601:5601 $(ORG)/$(NAME):$(BUILD)
+	@docker run --init -d --name $(NAME) --link elasticsearch -e KIBANA_ELASTICSEARCH_HOSTS=http://elasticsearch:9200 -p 5601:5601 $(ORG)/$(NAME):$(BUILD)
 
 .PHONY: ssh
 ssh: ## SSH into docker image
@@ -63,7 +63,6 @@ ssh: ## SSH into docker image
 
 .PHONY: stop
 stop: ## Kill running docker containers
-	@docker rm -f elasticsearch || true
 	@docker rm -f $(NAME) || true
 
 .PHONY: circle

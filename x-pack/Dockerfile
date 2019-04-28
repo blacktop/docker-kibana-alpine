@@ -35,9 +35,9 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && adduser -DH -s /sbin/nologin kibana \
   # usr alpine nodejs and not bundled version
   && bundled='NODE="${DIR}/node/bin/node"' \
-  && apline_node='NODE="/usr/bin/node"' \
-  && sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana-plugin \
-  && sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana \
+  && alpine_node='NODE="/usr/local/bin/node"' \
+  && sed -i "s|$bundled|$alpine_node|g" /usr/share/kibana/bin/kibana-plugin \
+  && sed -i "s|$bundled|$alpine_node|g" /usr/share/kibana/bin/kibana \
   && rm -rf /usr/share/kibana/node \
   && chown -R kibana:kibana /usr/share/kibana \
   && rm -rf /tmp/* \
