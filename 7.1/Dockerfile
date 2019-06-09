@@ -2,7 +2,7 @@ FROM node:10.15.2-alpine
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV VERSION 7.1.0
+ENV VERSION 7.1.1
 ENV DOWNLOAD_URL https://artifacts.elastic.co/downloads/kibana
 ENV TARBAL "${DOWNLOAD_URL}/kibana-oss-${VERSION}-linux-x86_64.tar.gz"
 ENV TARBALL_ASC "${DOWNLOAD_URL}/kibana-oss-${VERSION}-linux-x86_64.tar.gz.asc"
