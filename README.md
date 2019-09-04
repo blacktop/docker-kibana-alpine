@@ -8,33 +8,31 @@ Alpine Linux based [Kibana](https://www.elastic.co/products/kibana) Docker Image
 
 **Table of Contents**
 
-- [Why?](#why)
-- [Dependencies](#dependencies)
-- [Image Tags](#image-tags)
-- [Getting Started](#getting-started)
-- [Documentation](#documentation)
-- [Issues](#issues)
-- [Credits](#credits)
-- [CHANGELOG](#changelog)
-- [Contributing](#contributing)
-- [License](#license)
+* [Why?](#why)
+* [Dependencies](#dependencies)
+* [Image Tags](#image-tags)
+* [Getting Started](#getting-started)
+* [Documentation](#documentation)
+* [Issues](#issues)
+* [Credits](#credits)
+* [License](#license)
 
 ## Why?
 
 Compare Image Sizes:
 
-- official kibana = 1.01GB
-- blacktop/kibana = 322MB
+* official kibana = 1.01GB
+* blacktop/kibana = 322MB
 
 **Alpine version is 688 MB smaller !**
 
 ## Dependencies
 
-- [node:alpine](https://hub.docker.com/_/node/)
+* [node:alpine](https://hub.docker.com/_/node/)
 
 ## Image Tags
 
-```bash
+``` bash
 REPOSITORY          TAG                 SIZE
 blacktop/kibana     latest              322MB
 blacktop/kibana     7.3                 322MB
@@ -65,7 +63,7 @@ blacktop/kibana     4.6                 229.7MB
 
 ## Getting Started
 
-```bash
+``` bash
 $ docker run --init -d --name elasticsearch -p 9200:9200 blacktop/elasticsearch
 $ docker run --init -d --name kibana --link elasticsearch -p 5601:5601 blacktop/kibana
 ```
@@ -76,18 +74,18 @@ $ docker run --init -d --name kibana --link elasticsearch -p 5601:5601 blacktop/
 
 There are two types of env vars:
 
-- `KIBANA_ELASTICSEARCH_URL=http://localhost:9200`
-- `elasticsearch.url=http://localhost:9200`
+* `KIBANA_ELASTICSEARCH_URL=http://localhost:9200` 
+* `elasticsearch.url=http://localhost:9200` 
 
-### To use your own elasticsearch address via `KIBANA_ELASTICSEARCH_URL`
+### To use your own elasticsearch address via `KIBANA_ELASTICSEARCH_URL` 
 
-```bash
+``` bash
 $ docker run --init -d --name kibana -e KIBANA_ELASTICSEARCH_URL=http://some-elasticsearch:9200 -p 5601:5601 blacktop/kibana
 ```
 
 For elasticsearch running on a OSX host it would be
 
-```bash
+``` bash
 $ docker run --init -d --name kibana \
   -p 5601:5601 \
   --net host \
@@ -97,7 +95,7 @@ $ docker run --init -d --name kibana \
 
 For `x-pack` with basic auth:
 
-```bash
+``` bash
 $ docker run --init -d --name kibana \
              --restart unless-stopped \
              -p 443:5601 \
@@ -121,16 +119,7 @@ Find a bug? Want more features? Find something missing in the documentation? Let
 
 Heavily (if not entirely) influenced by https://github.com/docker-library/kibana
 
-## CHANGELOG
-
-See [`CHANGELOG.md`](https://github.com/blacktop/docker-kibana-alpine/blob/master/CHANGELOG.md)
-
-## Contributing
-
-[See all contributors on GitHub](https://github.com/blacktop/docker-kibana-alpine/graphs/contributors).
-
-Please update the [CHANGELOG.md](https://github.com/blacktop/docker-kibana-alpine/blob/master/CHANGELOG.md) and submit a [Pull Request on GitHub](https://help.github.com/articles/using-pull-requests/).
-
 ## License
 
 MIT Copyright (c) 2016-2019 **blacktop**
+

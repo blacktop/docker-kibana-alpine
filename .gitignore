@@ -1,3 +1,4 @@
 build
 *.tgz
 *.bu
+.vscode/settings.json
