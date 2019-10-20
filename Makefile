@@ -39,8 +39,10 @@ tag:
 
 .PHONY: test
 test: stop ## Test docker image
-	@docker run --init -d --name elasticsearch -p 9200:9200 blacktop/elasticsearch:$(BUILD); sleep 10;
-	@docker run --init -d --name $(NAME) --link elasticsearch -e KIBANA_ELASTICSEARCH_HOSTS=http://elasticsearch:9200 -p 5601:5601 $(ORG)/$(NAME):$(BUILD)
+	@docker-clean stop
+	@docker run --init -d --name elasticsearch -p 9200:9200 -e discovery.type=single-node blacktop/elasticsearch:$(BUILD)
+	@wait-for-es -V -H
+	@docker run --init -d --name $(NAME) --link elasticsearch -e xpack.reporting.enabled=false -p 5601:5601 $(ORG)/$(NAME):$(BUILD)
 	@docker logs $(NAME)
 	@open http://localhost:5601
 

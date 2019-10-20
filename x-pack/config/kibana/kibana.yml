@@ -4,7 +4,8 @@
 # Specifies the address to which the Kibana server will bind. IP addresses and host names are both valid values.
 # The default is 'localhost', which usually means remote machines will not be able to connect.
 # To allow connections from remote users, set this parameter to a non-loopback address.
-server.host: "0.0.0.0"
+server.name: kibana
+server.host: "0"
 
 # Enables you to specify a path to mount Kibana at if you are running behind a proxy.
 # Use the `server.rewriteBasePath` setting to tell Kibana if it should remove the basePath
@@ -110,3 +111,5 @@ elasticsearch.hosts: ["http://elasticsearch:9200"]
 
 # Specifies locale to be used for all localizable strings, dates and number formats.
 #i18n.locale: "en"
+
+xpack.monitoring.ui.container.elasticsearch.enabled: true
