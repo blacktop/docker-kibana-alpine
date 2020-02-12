@@ -4,14 +4,14 @@ LABEL maintainer "https://github.com/blacktop"
 
 ENV VERSION 7.6.0
 ENV DOWNLOAD_URL https://artifacts.elastic.co/downloads/kibana
-ENV TARBAL "${DOWNLOAD_URL}/kibana-${VERSION}-linux-x86_64.tar.gz"
-ENV TARBALL_ASC "${DOWNLOAD_URL}/kibana-${VERSION}-linux-x86_64.tar.gz.asc"
-ENV TARBALL_SHA "296416b9697ae66b20aae37ada855d7212fc5151055a35cc81e7c3cfef589758f10f600b382e9f4b419fcd327ff605d8da23a25e867f6a1e4d3bd133e0317b72"
+ENV TARBAL "${DOWNLOAD_URL}/kibana-oss-${VERSION}-linux-x86_64.tar.gz"
+ENV TARBALL_ASC "${DOWNLOAD_URL}/kibana-oss-${VERSION}-linux-x86_64.tar.gz.asc"
+ENV TARBALL_SHA "d72008da7c938c07c163e728044f3dde39cc6bd53fe47682d3602ccf817c7c1e873241b273ed19491c8777fa0ac62e8ec1a26a39546620b8d9eac49c883ba1b3"
 ENV GPG_KEY "46095ACC8548582C1A2699A9D27D666CD88E42B4"
 
 ENV PATH /usr/share/kibana/bin:$PATH
 
-RUN apk add --no-cache bash su-exec libc6-compat
+RUN apk add --no-cache bash su-exec
 RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && set -ex \
   && cd /tmp \

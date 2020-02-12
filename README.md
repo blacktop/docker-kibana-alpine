@@ -2,20 +2,23 @@
 
 # docker-kibana-alpine
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-kibana-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kibana-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Image](https://img.shields.io/badge/docker%20image-306MB-blue.svg)](https://hub.docker.com/r/blacktop/kibana/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-kibana-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kibana-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Image](https://img.shields.io/badge/docker%20image-388MB-blue.svg)](https://hub.docker.com/r/blacktop/kibana/)
 
 Alpine Linux based [Kibana](https://www.elastic.co/products/kibana) Docker Image
 
 **Table of Contents**
 
-* [Why?](#why)
-* [Dependencies](#dependencies)
-* [Image Tags](#image-tags)
-* [Getting Started](#getting-started)
-* [Documentation](#documentation)
-* [Issues](#issues)
-* [Credits](#credits)
-* [License](#license)
+- [docker-kibana-alpine](#docker-kibana-alpine)
+  - [Why?](#why)
+  - [Dependencies](#dependencies)
+  - [Image Tags](#image-tags)
+  - [Getting Started](#getting-started)
+  - [Documentation](#documentation)
+    - [Customize at runtime via environment variables](#customize-at-runtime-via-environment-variables)
+    - [To use your own elasticsearch address via `KIBANA_ELASTICSEARCH_URL`](#to-use-your-own-elasticsearch-address-via-kibanaelasticsearchurl)
+  - [Issues](#issues)
+  - [Credits](#credits)
+  - [License](#license)
 
 ## Why?
 
@@ -34,7 +37,8 @@ Compare Image Sizes:
 
 ``` bash
 REPOSITORY          TAG                 SIZE
-blacktop/kibana     latest              306MB
+blacktop/kibana     latest              388MB
+blacktop/kibana     7.6                 388MB
 blacktop/kibana     7.5                 306MB
 blacktop/kibana     7.4                 310MB
 blacktop/kibana     7.3                 322MB
@@ -123,5 +127,5 @@ Heavily (if not entirely) influenced by https://github.com/docker-library/kibana
 
 ## License
 
-MIT Copyright (c) 2016-2019 **blacktop**
+MIT Copyright (c) 2016-2020 **blacktop**
 
