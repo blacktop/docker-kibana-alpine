@@ -4,7 +4,7 @@ NAME=kibana
 # build info
 LATEST?=$(shell cat LATEST)
 BUILD?=$(LATEST)
-BUILDS=$(LATEST) 7.5 7.4 7.3 7.2 6.8 6.7 5.6 x-pack
+BUILDS=$(LATEST) 7.7 6.8 5.6 x-pack
 
 
 all: update build size test

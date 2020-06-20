@@ -2,7 +2,7 @@
 
 # docker-kibana-alpine
 
-[![CircleCI](https://circleci.com/gh/blacktop/docker-kibana-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kibana-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Image](https://img.shields.io/badge/docker%20image-576MB-blue.svg)](https://hub.docker.com/r/blacktop/kibana/)
+[![CircleCI](https://circleci.com/gh/blacktop/docker-kibana-alpine.png?style=shield)](https://circleci.com/gh/blacktop/docker-kibana-alpine) [![License](http://img.shields.io/:license-mit-blue.svg)](http://doge.mit-license.org) [![Docker Stars](https://img.shields.io/docker/stars/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Pulls](https://img.shields.io/docker/pulls/blacktop/kibana.svg)](https://hub.docker.com/r/blacktop/kibana/) [![Docker Image](https://img.shields.io/badge/docker%20image-581MB-blue.svg)](https://hub.docker.com/r/blacktop/kibana/)
 
 Alpine Linux based [Kibana](https://www.elastic.co/products/kibana) Docker Image
 
@@ -15,7 +15,7 @@ Alpine Linux based [Kibana](https://www.elastic.co/products/kibana) Docker Image
   - [Getting Started](#getting-started)
   - [Documentation](#documentation)
     - [Customize at runtime via environment variables](#customize-at-runtime-via-environment-variables)
-    - [To use your own elasticsearch address via `KIBANA_ELASTICSEARCH_URL`](#to-use-your-own-elasticsearch-address-via-kibanaelasticsearchurl)
+    - [To use your own elasticsearch address via `KIBANA_ELASTICSEARCH_URL`](#to-use-your-own-elasticsearch-address-via-kibana_elasticsearch_url)
   - [Issues](#issues)
   - [Credits](#credits)
   - [License](#license)
@@ -37,7 +37,8 @@ Compare Image Sizes:
 
 ``` bash
 REPOSITORY          TAG                 SIZE
-blacktop/kibana     latest              576MB
+blacktop/kibana     latest              581MB
+blacktop/kibana     7.8                 581MB
 blacktop/kibana     7.7                 576MB
 blacktop/kibana     7.6                 389MB
 blacktop/kibana     7.5                 306MB
