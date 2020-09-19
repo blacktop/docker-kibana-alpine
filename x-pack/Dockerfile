@@ -1,12 +1,12 @@
-FROM node:10.21.0-alpine
+FROM node:10.22.0-alpine
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV VERSION 7.8.0
+ENV VERSION 7.9.1
 ENV DOWNLOAD_URL https://artifacts.elastic.co/downloads/kibana
 ENV TARBAL "${DOWNLOAD_URL}/kibana-${VERSION}-linux-x86_64.tar.gz"
 ENV TARBALL_ASC "${DOWNLOAD_URL}/kibana-${VERSION}-linux-x86_64.tar.gz.asc"
-ENV TARBALL_SHA "3c9ffbbfe56b66226ff62740cbe8eae83e43b07a1e3aec2ca845398c7d4418fd9c3cf67bebf5d9dd77c285468265c23c46080762cd90df070cd03ebe92b3ebef"
+ENV TARBALL_SHA "50d6c817fe231f5f7d632e39930e7c25fc318819ad51d0d73718fed24e2a7fd6e2b3e90a13539fbd9120aa53aba4e22c08f7b53d2a089d84953c7b7530528300"
 ENV GPG_KEY "46095ACC8548582C1A2699A9D27D666CD88E42B4"
 
 ENV PATH /usr/share/kibana/bin:$PATH
