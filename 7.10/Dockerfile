@@ -1,8 +1,8 @@
-FROM node:10.19.0-alpine
+FROM node:10.22.1-alpine
 
 LABEL maintainer "https://github.com/blacktop"
 
-ENV VERSION 6.8.10
+ENV VERSION 7.10.1
 ENV DOWNLOAD_URL https://artifacts.elastic.co/downloads/kibana
 ENV TARBAL "${DOWNLOAD_URL}/kibana-oss-${VERSION}-linux-x86_64.tar.gz"
 ENV TARBALL_ASC "${DOWNLOAD_URL}/kibana-oss-${VERSION}-linux-x86_64.tar.gz.asc"
@@ -35,9 +35,9 @@ RUN apk add --no-cache -t .build-deps wget ca-certificates gnupg openssl \
   && adduser -DH -s /sbin/nologin kibana \
   # usr alpine nodejs and not bundled version
   && bundled='NODE="${DIR}/node/bin/node"' \
-  && apline_node='NODE="/usr/bin/node"' \
-  && sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana-plugin \
-  && sed -i "s|$bundled|$apline_node|g" /usr/share/kibana/bin/kibana \
+  && alpine_node='NODE="/usr/local/bin/node"' \
+  && sed -i "s|$bundled|$alpine_node|g" /usr/share/kibana/bin/kibana-plugin \
+  && sed -i "s|$bundled|$alpine_node|g" /usr/share/kibana/bin/kibana \
   && rm -rf /usr/share/kibana/node \
   && chown -R kibana:kibana /usr/share/kibana \
   && rm -rf /tmp/* \

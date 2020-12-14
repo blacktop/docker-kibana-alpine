@@ -6,7 +6,7 @@ ENV VERSION 7.7.1
 ENV DOWNLOAD_URL https://artifacts.elastic.co/downloads/kibana
 ENV TARBAL "${DOWNLOAD_URL}/kibana-oss-${VERSION}-linux-x86_64.tar.gz"
 ENV TARBALL_ASC "${DOWNLOAD_URL}/kibana-oss-${VERSION}-linux-x86_64.tar.gz.asc"
-ENV TARBALL_SHA "7bf5deb3eed503ca988baba63fbb977f38fb9ff57089fa47fafef6bb33e0e70a9368a8ccf6c7a651c88311c56b08459af43566e76af3103c8a4c0da51bce5097"
+ENV TARBALL_SHA ""
 ENV GPG_KEY "46095ACC8548582C1A2699A9D27D666CD88E42B4"
 
 ENV PATH /usr/share/kibana/bin:$PATH
